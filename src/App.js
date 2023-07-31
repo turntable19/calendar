@@ -9,19 +9,18 @@ import jaLocale from '@fullcalendar/core/locales/ja';
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { useBooks } from './hooks/useBooks';
 
 function App() {
+  const { title, setTitle, price, setPrice, volume, setVolume } = useBooks();
   const calendarRef = useRef(null);
   const [eventsList, setEventsList] = useState([]);
   const [viewType, setViewType] = useState('dayGridMonth');
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
-  const [volume, setVolume] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date()); 
   const [selectedEvent, setSelectedEvent] = useState(null); 
 
    // 全てのイベントの価格を合計して表示
-   const calculateTotalPrice = () => {
+    const calculateTotalPrice = () => {
     return eventsList.reduce((total, event) => total + Number(event.price), 0);
   };
 
